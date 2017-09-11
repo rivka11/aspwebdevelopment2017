@@ -58,7 +58,7 @@
       
       
       
-              <asp:Button ID="SignUp_button" runat="server" OnClick="SignUp_button_Click1" Text="Sign Up!" />
+              <asp:Button ID="SignUp_button" runat="server" OnClick="SignUp_button_Click" Text="Sign Up!" />
 &nbsp;<br>
     </div>
     </div>
