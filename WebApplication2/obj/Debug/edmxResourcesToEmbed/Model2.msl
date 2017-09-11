@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="textbookbasicModelStoreContainer" CdmEntityContainer="textbookContext">
+    <EntitySetMapping Name="books">
+      <EntityTypeMapping TypeName="textbookbasic.Model.book">
+        <MappingFragment StoreEntitySet="book">
+          <ScalarProperty Name="ISBN" ColumnName="ISBN" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Author" ColumnName="Author" />
+          <ScalarProperty Name="Edition" ColumnName="Edition" />
+          <ScalarProperty Name="imageurl" ColumnName="imageurl" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="campus">
+      <EntityTypeMapping TypeName="textbookbasic.Model.campu">
+        <MappingFragment StoreEntitySet="campus">
+          <ScalarProperty Name="CampusID" ColumnName="CampusID" />
+          <ScalarProperty Name="CampusName" ColumnName="CampusName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="contactmethods">
+      <EntityTypeMapping TypeName="textbookbasic.Model.contactmethod">
+        <MappingFragment StoreEntitySet="contactmethods">
+          <ScalarProperty Name="ContactID" ColumnName="ContactID" />
+          <ScalarProperty Name="methodDesc" ColumnName="methodDesc" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sellers">
+      <EntityTypeMapping TypeName="textbookbasic.Model.seller">
+        <MappingFragment StoreEntitySet="seller">
+          <ScalarProperty Name="userID" ColumnName="userID" />
+          <ScalarProperty Name="firstName" ColumnName="firstName" />
+          <ScalarProperty Name="lastName" ColumnName="lastName" />
+          <ScalarProperty Name="campus" ColumnName="campus" />
+          <ScalarProperty Name="userType" ColumnName="userType" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="prefContact" ColumnName="prefContact" />
+          <ScalarProperty Name="contactInfo" ColumnName="contactInfo" />
+          <ScalarProperty Name="userName" ColumnName="userName" />
+          <ScalarProperty Name="userpassword" ColumnName="userpassword" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="seller_book">
+      <EntityTypeMapping TypeName="textbookbasic.Model.seller_book">
+        <MappingFragment StoreEntitySet="seller_book">
+          <ScalarProperty Name="sellerbookID" ColumnName="sellerbookID" />
+          <ScalarProperty Name="SellerID" ColumnName="SellerID" />
+          <ScalarProperty Name="BookISBN" ColumnName="BookISBN" />
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="usertypes">
+      <EntityTypeMapping TypeName="textbookbasic.Model.usertype">
+        <MappingFragment StoreEntitySet="usertype">
+          <ScalarProperty Name="TypeID" ColumnName="TypeID" />
+          <ScalarProperty Name="TypeDesc" ColumnName="TypeDesc" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

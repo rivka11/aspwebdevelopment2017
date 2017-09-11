@@ -1,0 +1,156 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="textbookbasic.Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="book">
+    <Key>
+      <PropertyRef Name="ISBN" />
+    </Key>
+    <Property Name="ISBN" Type="String" MaxLength="13" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Title" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Author" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Edition" Type="Int32" />
+    <Property Name="imageurl" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="seller_book" Relationship="Self.fk_seller_book_book" FromRole="book" ToRole="seller_book" />
+  </EntityType>
+  <EntityType Name="campu">
+    <Key>
+      <PropertyRef Name="CampusID" />
+    </Key>
+    <Property Name="CampusID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CampusName" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="sellers" Relationship="Self.fk_seller_campus" FromRole="campus" ToRole="seller" />
+  </EntityType>
+  <EntityType Name="contactmethod">
+    <Key>
+      <PropertyRef Name="ContactID" />
+    </Key>
+    <Property Name="ContactID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="methodDesc" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="sellers" Relationship="Self.fk_seller_contactmethods" FromRole="contactmethods" ToRole="seller" />
+  </EntityType>
+  <EntityType Name="seller">
+    <Key>
+      <PropertyRef Name="userID" />
+    </Key>
+    <Property Name="userID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="firstName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="lastName" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="campus" Type="Int32" Nullable="false" />
+    <Property Name="userType" Type="Int32" Nullable="false" />
+    <Property Name="email" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="prefContact" Type="Int32" Nullable="false" />
+    <Property Name="contactInfo" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="userName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="userpassword" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="campu" Relationship="Self.fk_seller_campus" FromRole="seller" ToRole="campus" />
+    <NavigationProperty Name="contactmethod" Relationship="Self.fk_seller_contactmethods" FromRole="seller" ToRole="contactmethods" />
+    <NavigationProperty Name="seller_book" Relationship="Self.fk_seller_book_seller" FromRole="seller" ToRole="seller_book" />
+    <NavigationProperty Name="usertype1" Relationship="Self.fk_seller_user" FromRole="seller" ToRole="usertype" />
+  </EntityType>
+  <EntityType Name="seller_book">
+    <Key>
+      <PropertyRef Name="sellerbookID" />
+    </Key>
+    <Property Name="sellerbookID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SellerID" Type="Int32" Nullable="false" />
+    <Property Name="BookISBN" Type="String" MaxLength="13" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Notes" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="book" Relationship="Self.fk_seller_book_book" FromRole="seller_book" ToRole="book" />
+    <NavigationProperty Name="seller" Relationship="Self.fk_seller_book_seller" FromRole="seller_book" ToRole="seller" />
+  </EntityType>
+  <EntityType Name="usertype">
+    <Key>
+      <PropertyRef Name="TypeID" />
+    </Key>
+    <Property Name="TypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TypeDesc" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="sellers" Relationship="Self.fk_seller_user" FromRole="usertype" ToRole="seller" />
+  </EntityType>
+  <Association Name="fk_seller_book_book">
+    <End Role="book" Type="Self.book" Multiplicity="1" />
+    <End Role="seller_book" Type="Self.seller_book" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="book">
+        <PropertyRef Name="ISBN" />
+      </Principal>
+      <Dependent Role="seller_book">
+        <PropertyRef Name="BookISBN" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_seller_campus">
+    <End Role="campus" Type="Self.campu" Multiplicity="1" />
+    <End Role="seller" Type="Self.seller" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="campus">
+        <PropertyRef Name="CampusID" />
+      </Principal>
+      <Dependent Role="seller">
+        <PropertyRef Name="campus" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_seller_contactmethods">
+    <End Role="contactmethods" Type="Self.contactmethod" Multiplicity="1" />
+    <End Role="seller" Type="Self.seller" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="contactmethods">
+        <PropertyRef Name="ContactID" />
+      </Principal>
+      <Dependent Role="seller">
+        <PropertyRef Name="prefContact" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_seller_book_seller">
+    <End Role="seller" Type="Self.seller" Multiplicity="1" />
+    <End Role="seller_book" Type="Self.seller_book" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="seller">
+        <PropertyRef Name="userID" />
+      </Principal>
+      <Dependent Role="seller_book">
+        <PropertyRef Name="SellerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_seller_user">
+    <End Role="usertype" Type="Self.usertype" Multiplicity="1" />
+    <End Role="seller" Type="Self.seller" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usertype">
+        <PropertyRef Name="TypeID" />
+      </Principal>
+      <Dependent Role="seller">
+        <PropertyRef Name="userType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="textbookContext" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="books" EntityType="Self.book" />
+    <EntitySet Name="campus" EntityType="Self.campu" />
+    <EntitySet Name="contactmethods" EntityType="Self.contactmethod" />
+    <EntitySet Name="sellers" EntityType="Self.seller" />
+    <EntitySet Name="seller_book" EntityType="Self.seller_book" />
+    <EntitySet Name="usertypes" EntityType="Self.usertype" />
+    <AssociationSet Name="fk_seller_book_book" Association="Self.fk_seller_book_book">
+      <End Role="book" EntitySet="books" />
+      <End Role="seller_book" EntitySet="seller_book" />
+    </AssociationSet>
+    <AssociationSet Name="fk_seller_campus" Association="Self.fk_seller_campus">
+      <End Role="campus" EntitySet="campus" />
+      <End Role="seller" EntitySet="sellers" />
+    </AssociationSet>
+    <AssociationSet Name="fk_seller_contactmethods" Association="Self.fk_seller_contactmethods">
+      <End Role="contactmethods" EntitySet="contactmethods" />
+      <End Role="seller" EntitySet="sellers" />
+    </AssociationSet>
+    <AssociationSet Name="fk_seller_book_seller" Association="Self.fk_seller_book_seller">
+      <End Role="seller" EntitySet="sellers" />
+      <End Role="seller_book" EntitySet="seller_book" />
+    </AssociationSet>
+    <AssociationSet Name="fk_seller_user" Association="Self.fk_seller_user">
+      <End Role="usertype" EntitySet="usertypes" />
+      <End Role="seller" EntitySet="sellers" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
