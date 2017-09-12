@@ -5,30 +5,30 @@
           <div id ="space"> </div>
     <div style="width:100%;">
         <div class="inner">
-            <br>
+            <br/>
             <div class="inner">
      
             <label>ISBN(10 or 13):</label>
-            <input type ="text" name = "isbn" required="required"/>*
-            <br>
-            <br>
+             <asp:TextBox ID="isbn" required="required" runat="server"></asp:TextBox>*
+            <br/>
+            <br/>
             <label>Title:</label>
                 <asp:TextBox ID="titletb" required="required" runat="server"></asp:TextBox>
                 *
-            <br>
-            <br>
+            <br/>
+            <br/>
             <label>Author:</label>
-            <input type ="text" name = "author" required="required"/>*
-            <br>
-            <br>
+             <asp:TextBox ID="author" required="required" runat="server"></asp:TextBox>*
+            <br/>
+            <br/>
             <label>Edition:</label>
-            <input type ="text" name = "edition"/>
-            <br>
-            <br>
+             <asp:TextBox ID="edition" required="required" runat="server"></asp:TextBox>
+            <br/>
+            <br/>
             <label>Notes:</label>
-            <textarea  maxlength="100" name = "notes" rows ="3" cols="50" placeholder="enter information here (ie. book condition)"></textarea>
-            <br>
-            <br>
+            <textarea ID ="notes" runat= "server" 100"  rows ="3" cols="50" placeholder="enter information here (ie. book condition)" id="notes"></textarea>
+            <br/>
+            <br/>
                       
             <label>Select image to upload:</label>
              <asp:FileUpload ID="FileUpload1" runat="server" />

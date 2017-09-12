@@ -83,6 +83,7 @@
     <Content Include="App_Themes\Theme1\mainTheme.css" />
     <Content Include="error\404Error.aspx" />
     <Content Include="error\allError.aspx" />
+    <Content Include="error\HtmlPage1.html" />
     <Content Include="img\bio.jpg" />
     <Content Include="img\history.jpg" />
     <Content Include="img\math.jpg" />

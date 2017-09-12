@@ -17,6 +17,36 @@ namespace WebApplication2
 
         protected void addBook_button_Click(object sender, EventArgs e)
         {
+            var x = titletb.Text;
+            x += isbn.Text;
+            x += author.Text;
+         //   x += notes.Text;
+            x += edition.Text;
+
+            using (var db = new textbookContext())
+            {
+
+                db.books.Add(new book()
+                {
+                    ISBN = isbn.Text,
+                    Title = titletb.Text,
+                    Author = author.Text,
+               //     Edition = toInt(edition.Text),
+                    imageurl = ""
+                }
+                );
+
+                db.seller_book.Add(new seller_book()
+                {
+               //     SellerID = "",
+                    BookISBN = isbn.Text,
+              //      Notes = notes.Text
+
+                });
+
+                db.SaveChanges();
+            }
+
             if (FileUpload1.HasFile)
             //file is up to 4mb
             {//make sure file is image and in right format
@@ -24,21 +54,21 @@ namespace WebApplication2
                 {//check content is image
                     if (FileUpload1.PostedFile.ContentType.ToLower() != "image/jpg" &&
                         FileUpload1.PostedFile.ContentType.ToLower() != "image/jpeg" &&
-                        FileUpload1.PostedFile.ContentType.ToLower() != "image/gif" &&                       
+                        FileUpload1.PostedFile.ContentType.ToLower() != "image/gif" &&
                         FileUpload1.PostedFile.ContentType.ToLower() != "image/png")
                     {
                         //ERROR
                     }
                     //check if file extension is not one of above (you can rename extension so do other check first)
-                   else if (Path.GetExtension(FileUpload1.PostedFile.FileName).ToLower() != ".jpg"
-                          && Path.GetExtension(FileUpload1.PostedFile.FileName).ToLower() != ".png"
-                          && Path.GetExtension(FileUpload1.PostedFile.FileName).ToLower() != ".gif"
-                          && Path.GetExtension(FileUpload1.PostedFile.FileName).ToLower() != ".jpeg")
+                    else if (Path.GetExtension(FileUpload1.PostedFile.FileName).ToLower() != ".jpg"
+                           && Path.GetExtension(FileUpload1.PostedFile.FileName).ToLower() != ".png"
+                           && Path.GetExtension(FileUpload1.PostedFile.FileName).ToLower() != ".gif"
+                           && Path.GetExtension(FileUpload1.PostedFile.FileName).ToLower() != ".jpeg")
                     {
                         //ERROR
                     }
-                    
-                    using(var db = new textbookContext())
+
+                    using (var db = new textbookContext())
                     {
 
                     }
@@ -53,7 +83,7 @@ namespace WebApplication2
                          "Content type: " +
                          FileUpload1.PostedFile.ContentType;
 
-                   
+
                 }
                 catch (Exception ex)
                 {
@@ -63,11 +93,11 @@ namespace WebApplication2
             else
             {
                 Label1.Text = "You have not specified a file.";
-              
+
             }
-          
+
         }
 
-       
+
     }
 }

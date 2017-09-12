@@ -45,8 +45,7 @@
        
     <div>
        <asp:ContentPlaceHolder id="MainContent" runat="server">
-            <p>
-                &nbsp;</p>
+            
         </asp:ContentPlaceHolder>
 
     </div>
