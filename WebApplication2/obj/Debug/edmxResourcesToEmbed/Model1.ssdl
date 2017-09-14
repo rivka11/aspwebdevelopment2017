@@ -1,14 +1,24 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+<Schema Namespace="textbookbasicModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Applications">
+    <Key>
+      <PropertyRef Name="ApplicationId" />
+    </Key>
+    <Property Name="ApplicationId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ApplicationName" Type="nvarchar" MaxLength="235" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="256" />
+  </EntityType>
   <EntityType Name="book">
     <Key>
-      <PropertyRef Name="ISBN" />
+      <PropertyRef Name="bookID" />
     </Key>
     <Property Name="ISBN" Type="varchar" MaxLength="13" Nullable="false" />
     <Property Name="Title" Type="varchar" MaxLength="200" Nullable="false" />
     <Property Name="Author" Type="varchar" MaxLength="40" Nullable="false" />
     <Property Name="Edition" Type="int" />
     <Property Name="imageurl" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="bookID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="notes" Type="varchar(max)" />
   </EntityType>
   <EntityType Name="campus">
     <Key>
@@ -24,11 +34,54 @@
     <Property Name="ContactID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="methodDesc" Type="varchar" MaxLength="45" Nullable="false" />
   </EntityType>
+  <EntityType Name="Memberships">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ApplicationId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="PasswordFormat" Type="int" Nullable="false" />
+    <Property Name="PasswordSalt" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="256" />
+    <Property Name="PasswordQuestion" Type="nvarchar" MaxLength="256" />
+    <Property Name="PasswordAnswer" Type="nvarchar" MaxLength="128" />
+    <Property Name="IsApproved" Type="bit" Nullable="false" />
+    <Property Name="IsLockedOut" Type="bit" Nullable="false" />
+    <Property Name="CreateDate" Type="datetime" Nullable="false" />
+    <Property Name="LastLoginDate" Type="datetime" Nullable="false" />
+    <Property Name="LastPasswordChangedDate" Type="datetime" Nullable="false" />
+    <Property Name="LastLockoutDate" Type="datetime" Nullable="false" />
+    <Property Name="FailedPasswordAttemptCount" Type="int" Nullable="false" />
+    <Property Name="FailedPasswordAttemptWindowStart" Type="datetime" Nullable="false" />
+    <Property Name="FailedPasswordAnswerAttemptCount" Type="int" Nullable="false" />
+    <Property Name="FailedPasswordAnswerAttemptWindowsStart" Type="datetime" Nullable="false" />
+    <Property Name="Comment" Type="nvarchar" MaxLength="256" />
+  </EntityType>
+  <EntityType Name="Profiles">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="PropertyNames" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="PropertyValueStrings" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="PropertyValueBinary" Type="varbinary(max)" Nullable="false" />
+    <Property Name="LastUpdatedDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Roles">
+    <Key>
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="RoleId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ApplicationId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="RoleName" Type="nvarchar" MaxLength="256" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="256" />
+  </EntityType>
   <EntityType Name="seller">
     <Key>
       <PropertyRef Name="userID" />
     </Key>
-    <Property Name="userID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="userID" Type="uniqueidentifier" Nullable="false" />
     <Property Name="firstName" Type="varchar" MaxLength="20" Nullable="false" />
     <Property Name="lastName" Type="varchar" MaxLength="40" Nullable="false" />
     <Property Name="campus" Type="int" Nullable="false" />
@@ -44,9 +97,26 @@
       <PropertyRef Name="sellerbookID" />
     </Key>
     <Property Name="sellerbookID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="SellerID" Type="int" Nullable="false" />
-    <Property Name="BookISBN" Type="varchar" MaxLength="13" Nullable="false" />
-    <Property Name="Notes" Type="varchar" MaxLength="100" />
+    <Property Name="SellerID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="BookID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ApplicationId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="IsAnonymous" Type="bit" Nullable="false" />
+    <Property Name="LastActivityDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UsersInRoles">
+    <Key>
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="RoleId" Type="uniqueidentifier" Nullable="false" />
   </EntityType>
   <EntityType Name="usertype">
     <Key>
@@ -60,10 +130,10 @@
     <End Role="seller_book" Type="Self.seller_book" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="book">
-        <PropertyRef Name="ISBN" />
+        <PropertyRef Name="bookID" />
       </Principal>
       <Dependent Role="seller_book">
-        <PropertyRef Name="BookISBN" />
+        <PropertyRef Name="BookID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -103,6 +173,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="fk_seller_id">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="seller" Type="Self.seller" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="seller">
+        <PropertyRef Name="userID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="fk_seller_user">
     <End Role="usertype" Type="Self.usertype" Multiplicity="1" />
     <End Role="seller" Type="Self.seller" Multiplicity="*" />
@@ -115,12 +197,102 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="ModelStoreContainer">
+  <Association Name="MembershipEntity_Application">
+    <End Role="Applications" Type="Self.Applications" Multiplicity="1" />
+    <End Role="Memberships" Type="Self.Memberships" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Applications">
+        <PropertyRef Name="ApplicationId" />
+      </Principal>
+      <Dependent Role="Memberships">
+        <PropertyRef Name="ApplicationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MembershipEntity_User">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Memberships" Type="Self.Memberships" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Memberships">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ProfileEntity_User">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Profiles" Type="Self.Profiles" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Profiles">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="RoleEntity_Application">
+    <End Role="Applications" Type="Self.Applications" Multiplicity="1" />
+    <End Role="Roles" Type="Self.Roles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Applications">
+        <PropertyRef Name="ApplicationId" />
+      </Principal>
+      <Dependent Role="Roles">
+        <PropertyRef Name="ApplicationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="User_Application">
+    <End Role="Applications" Type="Self.Applications" Multiplicity="1" />
+    <End Role="Users" Type="Self.Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Applications">
+        <PropertyRef Name="ApplicationId" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="ApplicationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UsersInRole_Role">
+    <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+    <End Role="UsersInRoles" Type="Self.UsersInRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Roles">
+        <PropertyRef Name="RoleId" />
+      </Principal>
+      <Dependent Role="UsersInRoles">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UsersInRole_User">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="UsersInRoles" Type="Self.UsersInRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="UsersInRoles">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="textbookbasicModelStoreContainer">
+    <EntitySet Name="Applications" EntityType="Self.Applications" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="book" EntityType="Self.book" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="campus" EntityType="Self.campus" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="contactmethods" EntityType="Self.contactmethods" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Memberships" EntityType="Self.Memberships" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Profiles" EntityType="Self.Profiles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="seller" EntityType="Self.seller" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="seller_book" EntityType="Self.seller_book" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UsersInRoles" EntityType="Self.UsersInRoles" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="usertype" EntityType="Self.usertype" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="fk_seller_book_book" Association="Self.fk_seller_book_book">
       <End Role="book" EntitySet="book" />
@@ -138,9 +310,41 @@
       <End Role="contactmethods" EntitySet="contactmethods" />
       <End Role="seller" EntitySet="seller" />
     </AssociationSet>
+    <AssociationSet Name="fk_seller_id" Association="Self.fk_seller_id">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="seller" EntitySet="seller" />
+    </AssociationSet>
     <AssociationSet Name="fk_seller_user" Association="Self.fk_seller_user">
       <End Role="usertype" EntitySet="usertype" />
       <End Role="seller" EntitySet="seller" />
+    </AssociationSet>
+    <AssociationSet Name="MembershipEntity_Application" Association="Self.MembershipEntity_Application">
+      <End Role="Applications" EntitySet="Applications" />
+      <End Role="Memberships" EntitySet="Memberships" />
+    </AssociationSet>
+    <AssociationSet Name="MembershipEntity_User" Association="Self.MembershipEntity_User">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Memberships" EntitySet="Memberships" />
+    </AssociationSet>
+    <AssociationSet Name="ProfileEntity_User" Association="Self.ProfileEntity_User">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Profiles" EntitySet="Profiles" />
+    </AssociationSet>
+    <AssociationSet Name="RoleEntity_Application" Association="Self.RoleEntity_Application">
+      <End Role="Applications" EntitySet="Applications" />
+      <End Role="Roles" EntitySet="Roles" />
+    </AssociationSet>
+    <AssociationSet Name="User_Application" Association="Self.User_Application">
+      <End Role="Applications" EntitySet="Applications" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="UsersInRole_Role" Association="Self.UsersInRole_Role">
+      <End Role="Roles" EntitySet="Roles" />
+      <End Role="UsersInRoles" EntitySet="UsersInRoles" />
+    </AssociationSet>
+    <AssociationSet Name="UsersInRole_User" Association="Self.UsersInRole_User">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="UsersInRoles" EntitySet="UsersInRoles" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

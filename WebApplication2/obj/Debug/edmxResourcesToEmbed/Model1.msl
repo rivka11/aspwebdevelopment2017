@@ -1,19 +1,30 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Entities">
+  <EntityContainerMapping StorageEntityContainer="textbookbasicModelStoreContainer" CdmEntityContainer="textbookbasicEntitiesContext">
+    <EntitySetMapping Name="Applications">
+      <EntityTypeMapping TypeName="textbookbasicModel.Application">
+        <MappingFragment StoreEntitySet="Applications">
+          <ScalarProperty Name="ApplicationId" ColumnName="ApplicationId" />
+          <ScalarProperty Name="ApplicationName" ColumnName="ApplicationName" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="books">
-      <EntityTypeMapping TypeName="Model.book">
+      <EntityTypeMapping TypeName="textbookbasicModel.book">
         <MappingFragment StoreEntitySet="book">
           <ScalarProperty Name="ISBN" ColumnName="ISBN" />
           <ScalarProperty Name="Title" ColumnName="Title" />
           <ScalarProperty Name="Author" ColumnName="Author" />
           <ScalarProperty Name="Edition" ColumnName="Edition" />
           <ScalarProperty Name="imageurl" ColumnName="imageurl" />
+          <ScalarProperty Name="bookID" ColumnName="bookID" />
+          <ScalarProperty Name="notes" ColumnName="notes" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="campus">
-      <EntityTypeMapping TypeName="Model.campu">
+      <EntityTypeMapping TypeName="textbookbasicModel.campu">
         <MappingFragment StoreEntitySet="campus">
           <ScalarProperty Name="CampusID" ColumnName="CampusID" />
           <ScalarProperty Name="CampusName" ColumnName="CampusName" />
@@ -21,15 +32,61 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="contactmethods">
-      <EntityTypeMapping TypeName="Model.contactmethod">
+      <EntityTypeMapping TypeName="textbookbasicModel.contactmethod">
         <MappingFragment StoreEntitySet="contactmethods">
           <ScalarProperty Name="ContactID" ColumnName="ContactID" />
           <ScalarProperty Name="methodDesc" ColumnName="methodDesc" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Memberships">
+      <EntityTypeMapping TypeName="textbookbasicModel.Membership">
+        <MappingFragment StoreEntitySet="Memberships">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="ApplicationId" ColumnName="ApplicationId" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="PasswordFormat" ColumnName="PasswordFormat" />
+          <ScalarProperty Name="PasswordSalt" ColumnName="PasswordSalt" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="PasswordQuestion" ColumnName="PasswordQuestion" />
+          <ScalarProperty Name="PasswordAnswer" ColumnName="PasswordAnswer" />
+          <ScalarProperty Name="IsApproved" ColumnName="IsApproved" />
+          <ScalarProperty Name="IsLockedOut" ColumnName="IsLockedOut" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="LastLoginDate" ColumnName="LastLoginDate" />
+          <ScalarProperty Name="LastPasswordChangedDate" ColumnName="LastPasswordChangedDate" />
+          <ScalarProperty Name="LastLockoutDate" ColumnName="LastLockoutDate" />
+          <ScalarProperty Name="FailedPasswordAttemptCount" ColumnName="FailedPasswordAttemptCount" />
+          <ScalarProperty Name="FailedPasswordAttemptWindowStart" ColumnName="FailedPasswordAttemptWindowStart" />
+          <ScalarProperty Name="FailedPasswordAnswerAttemptCount" ColumnName="FailedPasswordAnswerAttemptCount" />
+          <ScalarProperty Name="FailedPasswordAnswerAttemptWindowsStart" ColumnName="FailedPasswordAnswerAttemptWindowsStart" />
+          <ScalarProperty Name="Comment" ColumnName="Comment" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Profiles">
+      <EntityTypeMapping TypeName="textbookbasicModel.Profile">
+        <MappingFragment StoreEntitySet="Profiles">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="PropertyNames" ColumnName="PropertyNames" />
+          <ScalarProperty Name="PropertyValueStrings" ColumnName="PropertyValueStrings" />
+          <ScalarProperty Name="PropertyValueBinary" ColumnName="PropertyValueBinary" />
+          <ScalarProperty Name="LastUpdatedDate" ColumnName="LastUpdatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Roles">
+      <EntityTypeMapping TypeName="textbookbasicModel.Role">
+        <MappingFragment StoreEntitySet="Roles">
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+          <ScalarProperty Name="ApplicationId" ColumnName="ApplicationId" />
+          <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="sellers">
-      <EntityTypeMapping TypeName="Model.seller">
+      <EntityTypeMapping TypeName="textbookbasicModel.seller">
         <MappingFragment StoreEntitySet="seller">
           <ScalarProperty Name="userID" ColumnName="userID" />
           <ScalarProperty Name="firstName" ColumnName="firstName" />
@@ -45,22 +102,40 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="seller_book">
-      <EntityTypeMapping TypeName="Model.seller_book">
+      <EntityTypeMapping TypeName="textbookbasicModel.seller_book">
         <MappingFragment StoreEntitySet="seller_book">
           <ScalarProperty Name="sellerbookID" ColumnName="sellerbookID" />
           <ScalarProperty Name="SellerID" ColumnName="SellerID" />
-          <ScalarProperty Name="BookISBN" ColumnName="BookISBN" />
-          <ScalarProperty Name="Notes" ColumnName="Notes" />
+          <ScalarProperty Name="BookID" ColumnName="BookID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="textbookbasicModel.User">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="ApplicationId" ColumnName="ApplicationId" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="IsAnonymous" ColumnName="IsAnonymous" />
+          <ScalarProperty Name="LastActivityDate" ColumnName="LastActivityDate" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="usertypes">
-      <EntityTypeMapping TypeName="Model.usertype">
+      <EntityTypeMapping TypeName="textbookbasicModel.usertype">
         <MappingFragment StoreEntitySet="usertype">
           <ScalarProperty Name="TypeID" ColumnName="TypeID" />
           <ScalarProperty Name="TypeDesc" ColumnName="TypeDesc" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <AssociationSetMapping Name="UsersInRoles" TypeName="textbookbasicModel.UsersInRoles" StoreEntitySet="UsersInRoles">
+      <EndProperty Name="Roles">
+        <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+      </EndProperty>
+      <EndProperty Name="Users">
+        <ScalarProperty Name="UserId" ColumnName="UserId" />
+      </EndProperty>
+    </AssociationSetMapping>
   </EntityContainerMapping>
 </Mapping>

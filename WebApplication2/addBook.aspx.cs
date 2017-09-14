@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace WebApplication2
 {
@@ -64,7 +59,7 @@ namespace WebApplication2
 
             }
            
-            using (var db = new textbookContext())
+            using (var db = new textbookbasicEntitiesContext())
             {
 
                 db.books.Add(new book()
@@ -77,12 +72,11 @@ namespace WebApplication2
                 }
                 );
 
-                seller x = User.Identity.GetUserId()
 
                 db.seller_book.Add(new seller_book()
                 {
-                   SellerID = 1,
-                    BookISBN = isbn.Text,
+                  
+                   
               //      Notes = notes.Text
 
                 });

@@ -2,7 +2,19 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-          <div id ="space"> </div>
+          <div id ="space"> 
+              
+              <asp:LoginView ID="LoginView1" runat="server">
+                  <AnonymousTemplate>
+                      You must be logged in to access this page!
+                      <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/LoginASP.aspx">Login</asp:HyperLink>
+                      &nbsp;&nbsp;
+                      <asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl="~/signUpASP.aspx">Sign up</asp:HyperLink>
+                  </AnonymousTemplate>
+
+              </asp:LoginView>
+              
+          </div>
     <div style="width:100%;">
         <div class="inner">
             <br/>
@@ -26,7 +38,7 @@
             <br/>
             <br/>
             <label>Notes:</label>
-            <textarea ID ="notes" runat= "server" 100"  rows ="3" cols="50" placeholder="enter information here (ie. book condition)" ></textarea>
+            <textarea ID ="notes" runat= "server"  rows ="3" cols="50" placeholder="enter information here (ie. book condition)" ></textarea>
             <br/>
             <br/>
                       

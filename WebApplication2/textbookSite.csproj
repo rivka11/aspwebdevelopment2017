@@ -97,15 +97,15 @@
     <Content Include="Minimal-Image-Slideshow-jQuery\css\slideshow.css" />
     <Content Include="Minimal-Image-Slideshow-jQuery\index.html" />
     <Content Include="Minimal-Image-Slideshow-jQuery\js\jquery.slideshow.lite.js" />
-    <Content Include="Model2.Context.tt">
+    <Content Include="Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model2.edmx</DependentUpon>
-      <LastGenOutput>Model2.Context.cs</LastGenOutput>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Model2.tt">
+    <Content Include="Model1.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model2.edmx</DependentUpon>
-      <LastGenOutput>Model2.cs</LastGenOutput>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
     <Content Include="myAddedBooks.aspx" />
     <Content Include="packages.config" />
@@ -124,12 +124,12 @@
     <Content Include="styles\navBar.css" />
     <Content Include="styles\siteStyles.css" />
     <Content Include="navMaster.Master" />
-    <EntityDeploy Include="Model2.edmx">
+    <EntityDeploy Include="Model1.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model2.Designer.cs</LastGenOutput>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Model2.edmx.diagram">
-      <DependentUpon>Model2.edmx</DependentUpon>
+    <Content Include="Model1.edmx.diagram">
+      <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -173,14 +173,17 @@
     <Compile Include="adminPages\viewAllBooks.aspx.designer.cs">
       <DependentUpon>viewAllBooks.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Application.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="book.cs">
-      <DependentUpon>Model2.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="campu.cs">
-      <DependentUpon>Model2.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="contactmethod.cs">
-      <DependentUpon>Model2.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="error\404Error.aspx.cs">
       <DependentUpon>404Error.aspx</DependentUpon>
@@ -203,20 +206,23 @@
     <Compile Include="LoginASP.aspx.designer.cs">
       <DependentUpon>LoginASP.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Model2.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model2.Context.tt</DependentUpon>
+    <Compile Include="Membership.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model2.cs">
+    <Compile Include="Model1.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Model2.tt</DependentUpon>
+      <DependentUpon>Model1.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model2.Designer.cs">
+    <Compile Include="Model1.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Model2.edmx</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
     <Compile Include="myAddedBooks.aspx.cs">
       <DependentUpon>myAddedBooks.aspx</DependentUpon>
@@ -225,7 +231,13 @@
     <Compile Include="myAddedBooks.aspx.designer.cs">
       <DependentUpon>myAddedBooks.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Profile.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Role.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="searchBooks.aspx.cs">
       <DependentUpon>searchBooks.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -234,10 +246,10 @@
       <DependentUpon>searchBooks.aspx</DependentUpon>
     </Compile>
     <Compile Include="seller.cs">
-      <DependentUpon>Model2.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="seller_book.cs">
-      <DependentUpon>Model2.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="SignIn.aspx.cs">
       <DependentUpon>SignIn.aspx</DependentUpon>
@@ -316,8 +328,11 @@
     <Compile Include="navMaster.Master.designer.cs">
       <DependentUpon>navMaster.Master</DependentUpon>
     </Compile>
+    <Compile Include="User.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="usertype.cs">
-      <DependentUpon>Model2.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
