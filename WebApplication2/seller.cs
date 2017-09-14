@@ -20,7 +20,7 @@ namespace WebApplication2
             this.seller_book = new HashSet<seller_book>();
         }
     
-        public int userID { get; set; }
+        public System.Guid userID { get; set; }
         public string firstName { get; set; }
         public string lastName { get; set; }
         public int campus { get; set; }
@@ -35,6 +35,7 @@ namespace WebApplication2
         public virtual contactmethod contactmethod { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<seller_book> seller_book { get; set; }
+        public virtual User User { get; set; }
         public virtual usertype usertype1 { get; set; }
     }
 }

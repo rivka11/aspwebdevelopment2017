@@ -12,23 +12,25 @@ namespace WebApplication2
     using System;
     using System.Collections.Generic;
     
-    public partial class book
+    public partial class User
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public book()
+        public User()
         {
-            this.seller_book = new HashSet<seller_book>();
+            this.Roles = new HashSet<Role>();
         }
     
-        public string ISBN { get; set; }
-        public string Title { get; set; }
-        public string Author { get; set; }
-        public Nullable<int> Edition { get; set; }
-        public string imageurl { get; set; }
-        public int bookID { get; set; }
-        public string notes { get; set; }
+        public System.Guid UserId { get; set; }
+        public System.Guid ApplicationId { get; set; }
+        public string UserName { get; set; }
+        public bool IsAnonymous { get; set; }
+        public System.DateTime LastActivityDate { get; set; }
     
+        public virtual Application Application { get; set; }
+        public virtual Membership Membership { get; set; }
+        public virtual Profile Profile { get; set; }
+        public virtual seller seller { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<seller_book> seller_book { get; set; }
+        public virtual ICollection<Role> Roles { get; set; }
     }
 }

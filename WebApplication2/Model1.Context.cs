@@ -13,10 +13,10 @@ namespace WebApplication2
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class textbookContext : DbContext
+    public partial class textbookbasicEntitiesContext : DbContext
     {
-        public textbookContext()
-            : base("name=textbookContext")
+        public textbookbasicEntitiesContext()
+            : base("name=textbookbasicEntitiesContext")
         {
         }
     
@@ -25,11 +25,16 @@ namespace WebApplication2
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Application> Applications { get; set; }
         public virtual DbSet<book> books { get; set; }
         public virtual DbSet<campu> campus { get; set; }
         public virtual DbSet<contactmethod> contactmethods { get; set; }
+        public virtual DbSet<Membership> Memberships { get; set; }
+        public virtual DbSet<Profile> Profiles { get; set; }
+        public virtual DbSet<Role> Roles { get; set; }
         public virtual DbSet<seller> sellers { get; set; }
         public virtual DbSet<seller_book> seller_book { get; set; }
+        public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<usertype> usertypes { get; set; }
     }
 }

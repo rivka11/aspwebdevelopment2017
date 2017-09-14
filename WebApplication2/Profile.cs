@@ -12,13 +12,14 @@ namespace WebApplication2
     using System;
     using System.Collections.Generic;
     
-    public partial class seller_book
+    public partial class Profile
     {
-        public int sellerbookID { get; set; }
-        public System.Guid SellerID { get; set; }
-        public int BookID { get; set; }
+        public System.Guid UserId { get; set; }
+        public string PropertyNames { get; set; }
+        public string PropertyValueStrings { get; set; }
+        public byte[] PropertyValueBinary { get; set; }
+        public System.DateTime LastUpdatedDate { get; set; }
     
-        public virtual book book { get; set; }
-        public virtual seller seller { get; set; }
+        public virtual User User { get; set; }
     }
 }
