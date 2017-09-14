@@ -26,14 +26,14 @@
             <br/>
             <br/>
             <label>Notes:</label>
-            <textarea ID ="notes" runat= "server" 100"  rows ="3" cols="50" placeholder="enter information here (ie. book condition)" id="notes"></textarea>
+            <textarea ID ="notes" runat= "server" 100"  rows ="3" cols="50" placeholder="enter information here (ie. book condition)" ></textarea>
             <br/>
             <br/>
                       
             <label>Select image to upload:</label>
              <asp:FileUpload ID="FileUpload1" runat="server" />
-            <br>
-            <br>
+            <br/>
+            <br/>
             &nbsp;<asp:Button ID="addBook_Button" runat="server" OnClick="addBook_button_Click" Text="Add Book" />
                 <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
                

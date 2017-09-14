@@ -36,3 +36,5 @@ C:\Users\me\Documents\Visual Studio 2017\Projects\WebApplication2\WebApplication
 C:\Users\me\Documents\Visual Studio 2017\Projects\WebApplication2\WebApplication2\bin\EntityFramework.SqlServer.dll
 C:\Users\me\Documents\Visual Studio 2017\Projects\WebApplication2\WebApplication2\bin\EntityFramework.xml
 C:\Users\me\Documents\Visual Studio 2017\Projects\WebApplication2\WebApplication2\bin\EntityFramework.SqlServer.xml
+C:\Users\me\Documents\Visual Studio 2017\Projects\WebApplication2\WebApplication2\bin\System.Web.Providers.dll
+C:\Users\me\Documents\Visual Studio 2017\Projects\WebApplication2\WebApplication2\bin\System.Web.Providers.xml

@@ -65,6 +65,9 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Providers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Providers.Core.2.0.0\lib\net40\System.Web.Providers.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
@@ -76,6 +79,8 @@
   <ItemGroup>
     <Content Include="about.aspx" />
     <Content Include="addBook.aspx" />
+    <Content Include="adminPages\addBook.aspx" />
+    <Content Include="adminPages\viewAllBooks.aspx" />
     <Content Include="App_Data\textbookbasic.mdf" />
     <Content Include="App_Data\textbookbasic_log.ldf">
       <DependentUpon>textbookbasic.mdf</DependentUpon>
@@ -88,6 +93,7 @@
     <Content Include="img\history.jpg" />
     <Content Include="img\math.jpg" />
     <Content Include="img\tblogo.PNG" />
+    <Content Include="LoginASP.aspx" />
     <Content Include="Minimal-Image-Slideshow-jQuery\css\slideshow.css" />
     <Content Include="Minimal-Image-Slideshow-jQuery\index.html" />
     <Content Include="Minimal-Image-Slideshow-jQuery\js\jquery.slideshow.lite.js" />
@@ -106,6 +112,7 @@
     <Content Include="searchBooks.aspx" />
     <Content Include="SignIn.aspx" />
     <Content Include="signUp.aspx" />
+    <Content Include="signUpASP.aspx" />
     <Content Include="Site1.Master" />
     <Content Include="default.aspx" />
     <Content Include="Minimal-Image-Slideshow-jQuery\README.md" />
@@ -133,7 +140,9 @@
     <Content Include="Web.sitemap" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="about.aspx.cs">
@@ -149,6 +158,20 @@
     </Compile>
     <Compile Include="addBook.aspx.designer.cs">
       <DependentUpon>addBook.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="adminPages\addBook.aspx.cs">
+      <DependentUpon>addBook.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="adminPages\addBook.aspx.designer.cs">
+      <DependentUpon>addBook.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="adminPages\viewAllBooks.aspx.cs">
+      <DependentUpon>viewAllBooks.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="adminPages\viewAllBooks.aspx.designer.cs">
+      <DependentUpon>viewAllBooks.aspx</DependentUpon>
     </Compile>
     <Compile Include="book.cs">
       <DependentUpon>Model2.tt</DependentUpon>
@@ -172,6 +195,13 @@
     </Compile>
     <Compile Include="error\allError.aspx.designer.cs">
       <DependentUpon>allError.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LoginASP.aspx.cs">
+      <DependentUpon>LoginASP.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LoginASP.aspx.designer.cs">
+      <DependentUpon>LoginASP.aspx</DependentUpon>
     </Compile>
     <Compile Include="Model2.Context.cs">
       <AutoGen>True</AutoGen>
@@ -222,6 +252,13 @@
     </Compile>
     <Compile Include="signUp.aspx.designer.cs">
       <DependentUpon>signUp.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="signUpASP.aspx.cs">
+      <DependentUpon>signUpASP.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="signUpASP.aspx.designer.cs">
+      <DependentUpon>signUpASP.aspx</DependentUpon>
     </Compile>
     <Compile Include="Site1.Master.cs">
       <DependentUpon>Site1.Master</DependentUpon>

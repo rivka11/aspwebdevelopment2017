@@ -5,20 +5,13 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace WebApplication2
+namespace WebApplication2.adminPages
 {
-    public partial class searchBooks : System.Web.UI.Page
+    public partial class viewAllBooks : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
 
         }
-
-
-        protected void ListView1_SelectedIndexChanged(Object sender, EventArgs e)
-        {
-       // ListView1.Items = 
-        }
-        
     }
 }

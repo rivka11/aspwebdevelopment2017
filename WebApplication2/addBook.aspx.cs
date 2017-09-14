@@ -17,36 +17,6 @@ namespace WebApplication2
 
         protected void addBook_button_Click(object sender, EventArgs e)
         {
-            var x = titletb.Text;
-            x += isbn.Text;
-            x += author.Text;
-         //   x += notes.Text;
-            x += edition.Text;
-
-            using (var db = new textbookContext())
-            {
-
-                db.books.Add(new book()
-                {
-                    ISBN = isbn.Text,
-                    Title = titletb.Text,
-                    Author = author.Text,
-               //     Edition = toInt(edition.Text),
-                    imageurl = ""
-                }
-                );
-
-                db.seller_book.Add(new seller_book()
-                {
-               //     SellerID = "",
-                    BookISBN = isbn.Text,
-              //      Notes = notes.Text
-
-                });
-
-                db.SaveChanges();
-            }
-
             if (FileUpload1.HasFile)
             //file is up to 4mb
             {//make sure file is image and in right format
@@ -58,6 +28,7 @@ namespace WebApplication2
                         FileUpload1.PostedFile.ContentType.ToLower() != "image/png")
                     {
                         //ERROR
+                        throw new Exception();
                     }
                     //check if file extension is not one of above (you can rename extension so do other check first)
                     else if (Path.GetExtension(FileUpload1.PostedFile.FileName).ToLower() != ".jpg"
@@ -66,13 +37,10 @@ namespace WebApplication2
                            && Path.GetExtension(FileUpload1.PostedFile.FileName).ToLower() != ".jpeg")
                     {
                         //ERROR
+                        throw new Exception();
                     }
 
-                    using (var db = new textbookContext())
-                    {
-
-                    }
-
+                 
                     var path = "~/img/books/" + Path.GetFileName(FileUpload1.PostedFile.FileName);
                     FileUpload1.SaveAs(Server.MapPath("~/img/books/" +
                         Path.GetFileName(FileUpload1.PostedFile.FileName)));
@@ -95,6 +63,34 @@ namespace WebApplication2
                 Label1.Text = "You have not specified a file.";
 
             }
+           
+            using (var db = new textbookContext())
+            {
+
+                db.books.Add(new book()
+                {
+                    ISBN = isbn.Text,
+                    Title = titletb.Text,
+                    Author = author.Text,
+                    Edition = Convert.ToInt32(edition.Text),
+                    imageurl = ""
+                }
+                );
+
+                seller x = User.Identity.GetUserId()
+
+                db.seller_book.Add(new seller_book()
+                {
+                   SellerID = 1,
+                    BookISBN = isbn.Text,
+              //      Notes = notes.Text
+
+                });
+
+                db.SaveChanges();
+            }
+
+          
 
         }
 
