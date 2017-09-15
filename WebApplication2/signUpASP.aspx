@@ -1,20 +1,23 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/navMaster.Master" AutoEventWireup="true" CodeBehind="signUpASP.aspx.cs" Inherits="WebApplication2.signUpASP" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style type="text/css">
         .auto-style1 {
             height: 30px;
         }
+
         .auto-style2 {
             width: 139px;
         }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <asp:CreateUserWizard ID="CreateUserWizard1" runat="server" Height="305px" Width="311px">
+    <asp:CreateUserWizard ID="CreateUserWizard1" runat="server" Height="305px" Width="311px" DisplayCancelButton="True" OnCreatedUser="CreateUserWizard1_CreatedUser"
+        onfinishbuttonclick="CreateUserWizard1_FinishButtonClick">
         <WizardSteps>
             <asp:CreateUserWizardStep runat="server">
                 <ContentTemplate>
-                    <table style="font-size:100%;height:305px;width:311px;">
+                    <table style="font-size: 100%; height: 305px; width: 311px;">
                         <tr>
                             <td align="center" class="auto-style1" colspan="2">Sign Up for Your New Account</td>
                         </tr>
@@ -54,19 +57,83 @@
                                 <asp:RequiredFieldValidator ID="EmailRequired" runat="server" ControlToValidate="Email" ErrorMessage="E-mail is required." ToolTip="E-mail is required." ValidationGroup="CreateUserWizard1">*</asp:RequiredFieldValidator>
                             </td>
                         </tr>
+                      
+
+                        <!-- -->
                         <tr>
                             <td align="right" class="auto-style2">
-                                &nbsp;</td>
+                                <asp:Label ID="Label1" runat="server" AssociatedControlID="Email">First name</asp:Label>
+                            </td>
                             <td>
-                                &nbsp;</td>
+                                <asp:TextBox ID="firstname" runat="server"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="Email" ErrorMessage="E-mail is required." ToolTip="E-mail is required." ValidationGroup="CreateUserWizard1">*</asp:RequiredFieldValidator>
+                            </td>
                         </tr>
+                        <!-- -->
+
+                          <!-- -->
+                        <tr>
+                            <td align="right" class="auto-style2">
+                                <asp:Label ID="Label4" runat="server" AssociatedControlID="Email">Last name</asp:Label>
+                            </td>
+                            <td>
+                                <asp:TextBox ID="lastname" runat="server"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="Email" ErrorMessage="E-mail is required." ToolTip="E-mail is required." ValidationGroup="CreateUserWizard1">*</asp:RequiredFieldValidator>
+                            </td>
+                        </tr>
+                        <!-- -->
+
+                        <!-- -->
+                        <tr>
+                            <td align="right" class="auto-style2">
+                                <asp:Label ID="Label2" runat="server" AssociatedControlID="Email">Preferred Contact</asp:Label>
+                            </td>
+                            <td>
+                                <asp:DropDownList ID="prefcontact" runat="server" DataSourceID="SqlDataSourceContactr" DataTextField="methodDesc" DataValueField="ContactID">
+                                    <asp:ListItem>Select</asp:ListItem>
+                                </asp:DropDownList>
+                                <asp:SqlDataSource ID="SqlDataSourceContactr" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT [ContactID], [methodDesc] FROM [contactmethods]"></asp:SqlDataSource>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="Email" ErrorMessage="E-mail is required." ToolTip="E-mail is required." ValidationGroup="CreateUserWizard1">*</asp:RequiredFieldValidator>
+                            </td>
+                        </tr>
+                        <!-- -->
+                           <!-- -->
+                        <tr>
+                            <td align="right" class="auto-style2">
+                                <asp:Label ID="Label5" runat="server" AssociatedControlID="Email">Preferred contact info</asp:Label>
+                            </td>
+                            <td>
+                                <asp:TextBox ID="contactinfo" runat="server"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="Email" ErrorMessage="E-mail is required." ToolTip="E-mail is required." ValidationGroup="CreateUserWizard1">*</asp:RequiredFieldValidator>
+                            </td>
+                        </tr>
+                        <!-- -->
+
+                        
+                        <!-- -->
+                        <tr>
+                            <td align="right" class="auto-style2">
+                                <asp:Label ID="Label3" runat="server" AssociatedControlID="Email">Campus</asp:Label>
+                            </td>
+                            <td>
+                               <asp:DropDownList ID="campus" runat="server" DataSourceID="SqlDataSourceCampusr" DataTextField="CampusName" DataValueField="CampusID">
+                  <asp:ListItem>choose</asp:ListItem>
+              </asp:DropDownList>
+                                <asp:SqlDataSource ID="SqlDataSourceCampusr" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT [CampusID], [CampusName] FROM [campus]"></asp:SqlDataSource>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="Email" ErrorMessage="E-mail is required." ToolTip="E-mail is required." ValidationGroup="CreateUserWizard1">*</asp:RequiredFieldValidator>
+                            </td>
+                        </tr>
+                        <!-- -->
+
+
+
                         <tr>
                             <td align="center" colspan="2">
                                 <asp:CompareValidator ID="PasswordCompare" runat="server" ControlToCompare="Password" ControlToValidate="ConfirmPassword" Display="Dynamic" ErrorMessage="The Password and Confirmation Password must match." ValidationGroup="CreateUserWizard1"></asp:CompareValidator>
                             </td>
                         </tr>
                         <tr>
-                            <td align="center" colspan="2" style="color:Red;">
+                            <td align="center" colspan="2" style="color: Red;">
                                 <asp:Literal ID="ErrorMessage" runat="server" EnableViewState="False"></asp:Literal>
                             </td>
                         </tr>
@@ -75,12 +142,15 @@
             </asp:CreateUserWizardStep>
             <asp:CompleteWizardStep runat="server">
                 <ContentTemplate>
-                    <table style="font-size:100%;height:305px;width:311px;">
+                    <table style="font-size: 100%; height: 305px; width: 311px;">
                         <tr>
                             <td align="center">Complete</td>
                         </tr>
                         <tr>
-                            <td>Your account has been successfully created.</td>
+                            <td>
+                     <asp:Label ID="complete" runat="server">Your account has been successfully created</asp:Label>
+
+                            </td>
                         </tr>
                         <tr>
                             <td align="right">

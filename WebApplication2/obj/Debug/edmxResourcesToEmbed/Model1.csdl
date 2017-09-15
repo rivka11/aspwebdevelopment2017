@@ -100,8 +100,6 @@
     <Property Name="email" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="prefContact" Type="Int32" Nullable="false" />
     <Property Name="contactInfo" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="userName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="userpassword" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
     <NavigationProperty Name="campu" Relationship="Self.fk_seller_campus" FromRole="seller" ToRole="campus" />
     <NavigationProperty Name="contactmethod" Relationship="Self.fk_seller_contactmethods" FromRole="seller" ToRole="contactmethods" />
     <NavigationProperty Name="seller_book" Relationship="Self.fk_seller_book_seller" FromRole="seller" ToRole="seller_book" />

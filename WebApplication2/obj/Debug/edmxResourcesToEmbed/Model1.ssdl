@@ -89,8 +89,6 @@
     <Property Name="email" Type="varchar" MaxLength="40" Nullable="false" />
     <Property Name="prefContact" Type="int" Nullable="false" />
     <Property Name="contactInfo" Type="varchar" MaxLength="40" Nullable="false" />
-    <Property Name="userName" Type="varchar" MaxLength="20" Nullable="false" />
-    <Property Name="userpassword" Type="varchar" MaxLength="20" Nullable="false" />
   </EntityType>
   <EntityType Name="seller_book">
     <Key>

@@ -96,8 +96,6 @@
           <ScalarProperty Name="email" ColumnName="email" />
           <ScalarProperty Name="prefContact" ColumnName="prefContact" />
           <ScalarProperty Name="contactInfo" ColumnName="contactInfo" />
-          <ScalarProperty Name="userName" ColumnName="userName" />
-          <ScalarProperty Name="userpassword" ColumnName="userpassword" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

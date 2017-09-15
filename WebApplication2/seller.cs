@@ -28,8 +28,6 @@ namespace WebApplication2
         public string email { get; set; }
         public int prefContact { get; set; }
         public string contactInfo { get; set; }
-        public string userName { get; set; }
-        public string userpassword { get; set; }
     
         public virtual campu campu { get; set; }
         public virtual contactmethod contactmethod { get; set; }
