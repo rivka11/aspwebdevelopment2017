@@ -34,7 +34,7 @@
             <br/>
             <br/>
             <label>Edition:</label>
-             <asp:TextBox ID="edition" required="required" runat="server"></asp:TextBox>
+             <asp:TextBox ID="edition"  runat="server"></asp:TextBox>
             <br/>
             <br/>
             <label>Notes:</label>

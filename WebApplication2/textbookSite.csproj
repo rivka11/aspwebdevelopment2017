@@ -179,7 +179,7 @@
     <Compile Include="book.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="campu.cs">
+    <Compile Include="campus.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="contactmethod.cs">
@@ -246,9 +246,6 @@
       <DependentUpon>searchBooks.aspx</DependentUpon>
     </Compile>
     <Compile Include="seller.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="seller_book.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="SignIn.aspx.cs">

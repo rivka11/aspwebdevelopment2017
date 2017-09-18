@@ -21,7 +21,7 @@
           <Property Name="Title" Type="varchar" MaxLength="200" Nullable="false" />
           <Property Name="Author" Type="varchar" MaxLength="40" Nullable="false" />
           <Property Name="Edition" Type="int" />
-          <Property Name="imageurl" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="imageurl" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="notes" Type="varchar(max)" />
           <Property Name="sellerID" Type="uniqueidentifier" Nullable="false" />
         </EntityType>
@@ -348,7 +348,7 @@
           <Property Name="Title" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Author" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Edition" Type="Int32" />
-          <Property Name="imageurl" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="imageurl" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="sellerID" Type="Guid" Nullable="false" />
           <NavigationProperty Name="seller" Relationship="textbookbasicModel.fk_seller" FromRole="book" ToRole="seller" />

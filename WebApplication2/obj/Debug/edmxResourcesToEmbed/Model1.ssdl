@@ -10,15 +10,15 @@
   </EntityType>
   <EntityType Name="book">
     <Key>
-      <PropertyRef Name="bookID" />
+      <PropertyRef Name="sellerID" />
     </Key>
     <Property Name="ISBN" Type="varchar" MaxLength="13" Nullable="false" />
     <Property Name="Title" Type="varchar" MaxLength="200" Nullable="false" />
     <Property Name="Author" Type="varchar" MaxLength="40" Nullable="false" />
     <Property Name="Edition" Type="int" />
     <Property Name="imageurl" Type="varchar" MaxLength="30" Nullable="false" />
-    <Property Name="bookID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="notes" Type="varchar(max)" />
+    <Property Name="sellerID" Type="uniqueidentifier" Nullable="false" />
   </EntityType>
   <EntityType Name="campus">
     <Key>
@@ -90,14 +90,6 @@
     <Property Name="prefContact" Type="int" Nullable="false" />
     <Property Name="contactInfo" Type="varchar" MaxLength="40" Nullable="false" />
   </EntityType>
-  <EntityType Name="seller_book">
-    <Key>
-      <PropertyRef Name="sellerbookID" />
-    </Key>
-    <Property Name="sellerbookID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="SellerID" Type="uniqueidentifier" Nullable="false" />
-    <Property Name="BookID" Type="int" Nullable="false" />
-  </EntityType>
   <EntityType Name="Users">
     <Key>
       <PropertyRef Name="UserId" />
@@ -123,27 +115,15 @@
     <Property Name="TypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="TypeDesc" Type="varchar" MaxLength="20" Nullable="false" />
   </EntityType>
-  <Association Name="fk_seller_book_book">
-    <End Role="book" Type="Self.book" Multiplicity="1" />
-    <End Role="seller_book" Type="Self.seller_book" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="book">
-        <PropertyRef Name="bookID" />
-      </Principal>
-      <Dependent Role="seller_book">
-        <PropertyRef Name="BookID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="fk_seller_book_seller">
+  <Association Name="fk_seller">
     <End Role="seller" Type="Self.seller" Multiplicity="1" />
-    <End Role="seller_book" Type="Self.seller_book" Multiplicity="*" />
+    <End Role="book" Type="Self.book" Multiplicity="0..1" />
     <ReferentialConstraint>
       <Principal Role="seller">
         <PropertyRef Name="userID" />
       </Principal>
-      <Dependent Role="seller_book">
-        <PropertyRef Name="SellerID" />
+      <Dependent Role="book">
+        <PropertyRef Name="sellerID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -288,17 +268,12 @@
     <EntitySet Name="Profiles" EntityType="Self.Profiles" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="seller" EntityType="Self.seller" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="seller_book" EntityType="Self.seller_book" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="UsersInRoles" EntityType="Self.UsersInRoles" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="usertype" EntityType="Self.usertype" Schema="dbo" store:Type="Tables" />
-    <AssociationSet Name="fk_seller_book_book" Association="Self.fk_seller_book_book">
-      <End Role="book" EntitySet="book" />
-      <End Role="seller_book" EntitySet="seller_book" />
-    </AssociationSet>
-    <AssociationSet Name="fk_seller_book_seller" Association="Self.fk_seller_book_seller">
+    <AssociationSet Name="fk_seller" Association="Self.fk_seller">
       <End Role="seller" EntitySet="seller" />
-      <End Role="seller_book" EntitySet="seller_book" />
+      <End Role="book" EntitySet="book" />
     </AssociationSet>
     <AssociationSet Name="fk_seller_campus" Association="Self.fk_seller_campus">
       <End Role="campus" EntitySet="campus" />

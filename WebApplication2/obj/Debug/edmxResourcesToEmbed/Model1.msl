@@ -13,18 +13,18 @@
     <EntitySetMapping Name="books">
       <EntityTypeMapping TypeName="textbookbasicModel.book">
         <MappingFragment StoreEntitySet="book">
+          <ScalarProperty Name="sellerID" ColumnName="sellerID" />
           <ScalarProperty Name="ISBN" ColumnName="ISBN" />
           <ScalarProperty Name="Title" ColumnName="Title" />
           <ScalarProperty Name="Author" ColumnName="Author" />
           <ScalarProperty Name="Edition" ColumnName="Edition" />
           <ScalarProperty Name="imageurl" ColumnName="imageurl" />
-          <ScalarProperty Name="bookID" ColumnName="bookID" />
           <ScalarProperty Name="notes" ColumnName="notes" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="campus">
-      <EntityTypeMapping TypeName="textbookbasicModel.campu">
+    <EntitySetMapping Name="campus1">
+      <EntityTypeMapping TypeName="textbookbasicModel.campus">
         <MappingFragment StoreEntitySet="campus">
           <ScalarProperty Name="CampusID" ColumnName="CampusID" />
           <ScalarProperty Name="CampusName" ColumnName="CampusName" />
@@ -96,15 +96,6 @@
           <ScalarProperty Name="email" ColumnName="email" />
           <ScalarProperty Name="prefContact" ColumnName="prefContact" />
           <ScalarProperty Name="contactInfo" ColumnName="contactInfo" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="seller_book">
-      <EntityTypeMapping TypeName="textbookbasicModel.seller_book">
-        <MappingFragment StoreEntitySet="seller_book">
-          <ScalarProperty Name="sellerbookID" ColumnName="sellerbookID" />
-          <ScalarProperty Name="SellerID" ColumnName="SellerID" />
-          <ScalarProperty Name="BookID" ColumnName="BookID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

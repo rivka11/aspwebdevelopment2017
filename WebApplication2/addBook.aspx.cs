@@ -67,25 +67,27 @@ namespace WebApplication2
                 Label1.Text = "You have not specified a file.";
 
             }
+            Console.Write(path);
 
             using (var db = new textbookbasicEntitiesContext())
             {
                 var currUser = (Guid)(System.Web.Security.Membership.GetUser().ProviderUserKey);
-
+                int x;
                 db.books.Add(new book()
                 {
                     ISBN = isbn.Text,
                     Title = titletb.Text,
                     Author = author.Text,
-                    Edition = Convert.ToInt32(edition.Text),
+                    //allowed to have null
+                    Edition = Int32.TryParse(edition.Text, out x)? (int?)x:null,
                     imageurl = path ?? "~/img/books/na.jpg",
                     sellerID = currUser
                 }
                 );
 
-              
-              
 
+
+               Console.Write(path);
                 db.SaveChanges();
             }
 
