@@ -14,21 +14,14 @@ namespace WebApplication2
     
     public partial class book
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public book()
-        {
-            this.seller_book = new HashSet<seller_book>();
-        }
-    
         public string ISBN { get; set; }
         public string Title { get; set; }
         public string Author { get; set; }
         public Nullable<int> Edition { get; set; }
         public string imageurl { get; set; }
-        public int bookID { get; set; }
         public string notes { get; set; }
+        public System.Guid sellerID { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<seller_book> seller_book { get; set; }
+        public virtual seller seller { get; set; }
     }
 }

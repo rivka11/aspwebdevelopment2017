@@ -1,5 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/navMaster.Master" AutoEventWireup="true" CodeBehind="signUpASP.aspx.cs" Inherits="WebApplication2.signUpASP" %>
 
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style type="text/css">
         .auto-style1 {
@@ -12,7 +13,8 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <asp:CreateUserWizard ID="CreateUserWizard1" runat="server" Height="305px" Width="311px" DisplayCancelButton="True" OnCreatedUser="CreateUserWizard1_CreatedUser"
+    <asp:CreateUserWizard ID="CreateUserWizard1" runat="server" Height="305px" Width="311px" DisplayCancelButton="True" OnCreatedUser="CreateUserWizard1_CreatedUser" onCreatingUser="CreateUserWizard1_CreatingUser"
+
         onfinishbuttonclick="CreateUserWizard1_FinishButtonClick">
         <WizardSteps>
             <asp:CreateUserWizardStep runat="server">

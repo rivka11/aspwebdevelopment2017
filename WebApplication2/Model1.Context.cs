@@ -27,13 +27,12 @@ namespace WebApplication2
     
         public virtual DbSet<Application> Applications { get; set; }
         public virtual DbSet<book> books { get; set; }
-        public virtual DbSet<campu> campus { get; set; }
+        public virtual DbSet<campus> campus1 { get; set; }
         public virtual DbSet<contactmethod> contactmethods { get; set; }
         public virtual DbSet<Membership> Memberships { get; set; }
         public virtual DbSet<Profile> Profiles { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
         public virtual DbSet<seller> sellers { get; set; }
-        public virtual DbSet<seller_book> seller_book { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<usertype> usertypes { get; set; }
     }

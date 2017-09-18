@@ -12,10 +12,10 @@ namespace WebApplication2
     using System;
     using System.Collections.Generic;
     
-    public partial class campu
+    public partial class campus
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public campu()
+        public campus()
         {
             this.sellers = new HashSet<seller>();
         }
