@@ -89,6 +89,7 @@
     <Content Include="error\404Error.aspx" />
     <Content Include="error\allError.aspx" />
     <Content Include="error\HtmlPage1.html" />
+    <Content Include="images\tblogo.PNG" />
     <Content Include="img\bio.jpg" />
     <Content Include="img\history.jpg" />
     <Content Include="img\math.jpg" />

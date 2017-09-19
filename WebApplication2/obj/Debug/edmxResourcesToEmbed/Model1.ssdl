@@ -16,7 +16,7 @@
     <Property Name="Title" Type="varchar" MaxLength="200" Nullable="false" />
     <Property Name="Author" Type="varchar" MaxLength="40" Nullable="false" />
     <Property Name="Edition" Type="int" />
-    <Property Name="imageurl" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="imageurl" Type="varchar" MaxLength="100" Nullable="false" />
     <Property Name="notes" Type="varchar(max)" />
     <Property Name="sellerID" Type="uniqueidentifier" Nullable="false" />
   </EntityType>

@@ -19,6 +19,24 @@ namespace WebApplication2
         {
        // ListView1.Items = 
         }
-        
+
+        protected void ImageButton1_Click(object sender, ImageClickEventArgs e)
+        {
+            if(searchBox.Text == "")
+            {
+                //dont do anything
+            }
+            else
+            {
+                using (var db = new textbookbasicEntitiesContext())
+                {
+                    ListView1.DataSource = db.sellers.ToList();
+                    ListView1.DataBind();
+                }
+
+            
+            }
+          
+        }
     }
 }

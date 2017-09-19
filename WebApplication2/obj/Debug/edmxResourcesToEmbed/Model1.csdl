@@ -19,7 +19,7 @@
     <Property Name="Title" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Author" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Edition" Type="Int32" />
-    <Property Name="imageurl" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="imageurl" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="sellerID" Type="Guid" Nullable="false" />
     <NavigationProperty Name="seller" Relationship="textbookbasicModel.fk_seller" FromRole="book" ToRole="seller" />

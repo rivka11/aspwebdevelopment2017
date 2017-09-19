@@ -4,10 +4,11 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+    <asp:TextBox ID="searchBox" runat="server" ></asp:TextBox>
+    <asp:ImageButton ID="ImageButton1" runat="server" Height="23px" ImageUrl="~/images/tblogo.PNG" OnClick="ImageButton1_Click" Width="31px" />
     <br />
-    <asp:ListView ID="ListView1" runat="server" DataKeyNames="ISBN" DataSourceID="tddb"
-        GroupItemCount="3" OnSelectedIndexChanged="ListView1_SelectedIndexChanged">
+    <asp:ListView ID="ListView1" runat="server" DataKeyNames="ISBN" 
+        GroupItemCount="3" >
         <AlternatingItemTemplate>
             <td runat="server" style="background-color: #FAFAD2;color: #284775;">ISBN:
                 <asp:Label ID="ISBNLabel" runat="server" Text='<%# Eval("ISBN") %>' />
@@ -80,8 +81,12 @@
                 <br />Edition:
                 <asp:Label ID="EditionLabel" runat="server" Text='<%# Eval("Edition") %>' />
                 <br />imageurl:
-                <asp:Label ID="imageurlLabel" runat="server" Text='<%# Eval("imageurl") %>' />
-                <br /></td>
+               
+                <br />
+     <asp:Label ID="imageurlLabel" runat="server" Text='<%# Eval("imageurl") %>' />
+    <asp:Image ID="bookimage1" ImageUrl ='<%# Eval("imageurl") %>' runat="server" />
+
+            </td>
         </ItemTemplate>
         <LayoutTemplate>
             <table runat="server">
@@ -115,7 +120,10 @@
                 <asp:Label ID="EditionLabel" runat="server" Text='<%# Eval("Edition") %>' />
                 <br />imageurl:
                 <asp:Label ID="imageurlLabel" runat="server" Text='<%# Eval("imageurl") %>' />
-                <br /></td>
+
+                <br />
+             <asp:Image ID="bookimage" imageUrl ='<%# Eval("imageurl") %>' runat="server" />
+                </td>
         </SelectedItemTemplate>
     </asp:ListView>
     <asp:SqlDataSource ID="tddb" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [book]"></asp:SqlDataSource>
