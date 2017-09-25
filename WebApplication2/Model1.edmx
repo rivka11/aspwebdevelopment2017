@@ -15,7 +15,7 @@
         </EntityType>
         <EntityType Name="book">
           <Key>
-            <PropertyRef Name="sellerID" />
+            <PropertyRef Name="bookID" />
           </Key>
           <Property Name="ISBN" Type="varchar" MaxLength="13" Nullable="false" />
           <Property Name="Title" Type="varchar" MaxLength="200" Nullable="false" />
@@ -24,6 +24,7 @@
           <Property Name="imageurl" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="notes" Type="varchar(max)" />
           <Property Name="sellerID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="bookID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
         <EntityType Name="campus">
           <Key>
@@ -122,7 +123,7 @@
         </EntityType>
         <Association Name="fk_seller">
           <End Role="seller" Type="Self.seller" Multiplicity="1" />
-          <End Role="book" Type="Self.book" Multiplicity="0..1" />
+          <End Role="book" Type="Self.book" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="seller">
               <PropertyRef Name="userID" />
@@ -340,19 +341,6 @@
           <NavigationProperty Name="Roles" Relationship="Self.RoleEntity_Application" FromRole="Applications" ToRole="Roles" />
           <NavigationProperty Name="Users" Relationship="Self.User_Application" FromRole="Applications" ToRole="Users" />
         </EntityType>
-        <EntityType Name="book">
-          <Key>
-            <PropertyRef Name="sellerID" />
-          </Key>
-          <Property Name="ISBN" Type="String" MaxLength="13" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Title" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Author" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Edition" Type="Int32" />
-          <Property Name="imageurl" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="sellerID" Type="Guid" Nullable="false" />
-          <NavigationProperty Name="seller" Relationship="textbookbasicModel.fk_seller" FromRole="book" ToRole="seller" />
-        </EntityType>
         <EntityType Name="campus">
           <Key>
             <PropertyRef Name="CampusID" />
@@ -433,7 +421,7 @@
           <NavigationProperty Name="contactmethod" Relationship="Self.fk_seller_contactmethods" FromRole="seller" ToRole="contactmethods" />
           <NavigationProperty Name="User" Relationship="Self.fk_seller_id" FromRole="seller" ToRole="Users" />
           <NavigationProperty Name="usertype1" Relationship="Self.fk_seller_user" FromRole="seller" ToRole="usertype" />
-          <NavigationProperty Name="book" Relationship="textbookbasicModel.fk_seller" FromRole="seller" ToRole="book" />
+          <NavigationProperty Name="books" Relationship="textbookbasicModel.fk_seller" FromRole="seller" ToRole="book" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -572,7 +560,6 @@
         </Association>
         <EntityContainer Name="textbookbasicEntitiesContext" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Applications" EntityType="Self.Application" />
-          <EntitySet Name="books" EntityType="Self.book" />
           <EntitySet Name="campus1" EntityType="textbookbasicModel.campus" />
           <EntitySet Name="contactmethods" EntityType="Self.contactmethod" />
           <EntitySet Name="Memberships" EntityType="Self.Membership" />
@@ -621,14 +608,29 @@
             <End Role="Roles" EntitySet="Roles" />
             <End Role="Users" EntitySet="Users" />
           </AssociationSet>
+          <EntitySet Name="books" EntityType="textbookbasicModel.book" />
           <AssociationSet Name="fk_seller" Association="textbookbasicModel.fk_seller">
             <End Role="seller" EntitySet="sellers" />
             <End Role="book" EntitySet="books" />
           </AssociationSet>
         </EntityContainer>
+        <EntityType Name="book">
+          <Key>
+            <PropertyRef Name="bookID" />
+          </Key>
+          <Property Name="ISBN" Type="String" Nullable="false" MaxLength="13" FixedLength="false" Unicode="false" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Author" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="Edition" Type="Int32" />
+          <Property Name="imageurl" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="sellerID" Type="Guid" Nullable="false" />
+          <Property Name="bookID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="seller" Relationship="textbookbasicModel.fk_seller" FromRole="book" ToRole="seller" />
+        </EntityType>
         <Association Name="fk_seller">
           <End Type="textbookbasicModel.seller" Role="seller" Multiplicity="1" />
-          <End Type="textbookbasicModel.book" Role="book" Multiplicity="0..1" />
+          <End Type="textbookbasicModel.book" Role="book" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="seller">
               <PropertyRef Name="userID" />
@@ -650,19 +652,6 @@
                 <ScalarProperty Name="ApplicationId" ColumnName="ApplicationId" />
                 <ScalarProperty Name="ApplicationName" ColumnName="ApplicationName" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="books">
-            <EntityTypeMapping TypeName="textbookbasicModel.book">
-              <MappingFragment StoreEntitySet="book">
-                <ScalarProperty Name="sellerID" ColumnName="sellerID" />
-                <ScalarProperty Name="ISBN" ColumnName="ISBN" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="Author" ColumnName="Author" />
-                <ScalarProperty Name="Edition" ColumnName="Edition" />
-                <ScalarProperty Name="imageurl" ColumnName="imageurl" />
-                <ScalarProperty Name="notes" ColumnName="notes" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -769,6 +758,20 @@
               <ScalarProperty Name="UserId" ColumnName="UserId" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="books">
+            <EntityTypeMapping TypeName="textbookbasicModel.book">
+              <MappingFragment StoreEntitySet="book">
+                <ScalarProperty Name="bookID" ColumnName="bookID" />
+                <ScalarProperty Name="sellerID" ColumnName="sellerID" />
+                <ScalarProperty Name="notes" ColumnName="notes" />
+                <ScalarProperty Name="imageurl" ColumnName="imageurl" />
+                <ScalarProperty Name="Edition" ColumnName="Edition" />
+                <ScalarProperty Name="Author" ColumnName="Author" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ISBN" ColumnName="ISBN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

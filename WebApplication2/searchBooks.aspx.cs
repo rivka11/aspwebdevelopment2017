@@ -11,32 +11,38 @@ namespace WebApplication2
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            using (var db = new textbookbasicEntitiesContext())
+            {
+                ListView2.DataSource = db.books.ToList();
+                ListView2.DataBind();
+            }
         }
 
 
         protected void ListView1_SelectedIndexChanged(Object sender, EventArgs e)
         {
-       // ListView1.Items = 
+            // ListView1.Items = 
         }
 
         protected void ImageButton1_Click(object sender, ImageClickEventArgs e)
         {
-            if(searchBox.Text == "")
+            if (searchBox.Text != "")
             {
-                //dont do anything
-            }
-            else
-            {
+
                 using (var db = new textbookbasicEntitiesContext())
                 {
-                    ListView1.DataSource = db.sellers.ToList();
-                    ListView1.DataBind();
+                    ListView2.DataSource = db.books.Where(v=> v.ISBN.Contains(searchBox.Text) || v.Title.Contains(searchBox.Text)).ToList();
+                    ListView2.DataBind();
                 }
 
-            
+
             }
-          
+
+        }
+
+        protected void ListView1_SelectedIndexChanged1(object sender, EventArgs e)
+        {
+
         }
     }
 }

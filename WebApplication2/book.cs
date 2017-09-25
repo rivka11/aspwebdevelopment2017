@@ -21,6 +21,7 @@ namespace WebApplication2
         public string imageurl { get; set; }
         public string notes { get; set; }
         public System.Guid sellerID { get; set; }
+        public int bookID { get; set; }
     
         public virtual seller seller { get; set; }
     }

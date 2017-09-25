@@ -14,6 +14,12 @@ namespace WebApplication2
     
     public partial class seller
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public seller()
+        {
+            this.books = new HashSet<book>();
+        }
+    
         public System.Guid userID { get; set; }
         public string firstName { get; set; }
         public string lastName { get; set; }
@@ -27,6 +33,7 @@ namespace WebApplication2
         public virtual contactmethod contactmethod { get; set; }
         public virtual User User { get; set; }
         public virtual usertype usertype1 { get; set; }
-        public virtual book book { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<book> books { get; set; }
     }
 }

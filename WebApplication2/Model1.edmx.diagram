@@ -6,7 +6,6 @@
     <edmx:Diagrams>
       <Diagram DiagramId="e112af46656745c78f054f8bf698de92" Name="Diagram1">
         <EntityTypeShape EntityType="textbookbasicModel.Application" Width="1.5" PointX="0.75" PointY="6.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="textbookbasicModel.book" Width="1.5" PointX="10.5" PointY="5.375" IsExpanded="true" />
         <EntityTypeShape EntityType="textbookbasicModel.campus" Width="1.5" PointX="6" PointY="6.75" IsExpanded="true" />
         <EntityTypeShape EntityType="textbookbasicModel.contactmethod" Width="1.5" PointX="8.25" PointY="12.875" IsExpanded="true" />
         <EntityTypeShape EntityType="textbookbasicModel.Membership" Width="1.5" PointX="3" PointY="5.25" IsExpanded="true" />
@@ -25,6 +24,7 @@
         <AssociationConnector Association="textbookbasicModel.fk_seller_id" ManuallyRouted="false" />
         <AssociationConnector Association="textbookbasicModel.fk_seller_user" ManuallyRouted="false" />
         <AssociationConnector Association="textbookbasicModel.UsersInRoles" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="textbookbasicModel.book" Width="1.5" PointX="12.5" PointY="6" />
         <AssociationConnector Association="textbookbasicModel.fk_seller" />
       </Diagram>
     </edmx:Diagrams>

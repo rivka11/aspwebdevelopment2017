@@ -20,6 +20,7 @@ namespace WebApplication2
         protected void addBook_button_Click(object sender, EventArgs e)
         {
             string path = null;
+            string shortpath = null;
 
             if (FileUpload1.HasFile)
             //file is up to 4mb
@@ -44,9 +45,9 @@ namespace WebApplication2
                         throw new Exception("not an image");
                     }
 
-                    path = Server.MapPath("~/img/books/" +
-                        Path.GetFileName(FileUpload1.PostedFile.FileName));
-                //    var path = "~/img/books/" + Path.GetFileName(FileUpload1.PostedFile.FileName);
+                    path = Server.MapPath("~/img/books/")+
+                        Path.GetFileName(FileUpload1.PostedFile.FileName);
+                   shortpath = "~/img/books/" + Path.GetFileName(FileUpload1.PostedFile.FileName);
                     FileUpload1.SaveAs(path);
 
                     Label1.Text = "File name: " +
@@ -67,7 +68,7 @@ namespace WebApplication2
                 Label1.Text = "You have not specified a file.";
 
             }
-            Console.Write(path);
+         
 
             using (var db = new textbookbasicEntitiesContext())
             {
@@ -80,14 +81,14 @@ namespace WebApplication2
                     Author = author.Text,
                     //allowed to have null
                     Edition = Int32.TryParse(edition.Text, out x)? (int?)x:null,
-                    imageurl = path ?? "~/img/books/na.jpg",
+                    imageurl = shortpath ?? "~/img/books/na.jpg",
                     sellerID = currUser
                 }
                 );
 
 
 
-               Console.Write(path);
+            
                 db.SaveChanges();
             }
 

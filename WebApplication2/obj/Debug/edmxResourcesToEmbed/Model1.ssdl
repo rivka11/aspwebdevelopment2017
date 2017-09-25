@@ -10,7 +10,7 @@
   </EntityType>
   <EntityType Name="book">
     <Key>
-      <PropertyRef Name="sellerID" />
+      <PropertyRef Name="bookID" />
     </Key>
     <Property Name="ISBN" Type="varchar" MaxLength="13" Nullable="false" />
     <Property Name="Title" Type="varchar" MaxLength="200" Nullable="false" />
@@ -19,6 +19,7 @@
     <Property Name="imageurl" Type="varchar" MaxLength="100" Nullable="false" />
     <Property Name="notes" Type="varchar(max)" />
     <Property Name="sellerID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="bookID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
   </EntityType>
   <EntityType Name="campus">
     <Key>
@@ -117,7 +118,7 @@
   </EntityType>
   <Association Name="fk_seller">
     <End Role="seller" Type="Self.seller" Multiplicity="1" />
-    <End Role="book" Type="Self.book" Multiplicity="0..1" />
+    <End Role="book" Type="Self.book" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="seller">
         <PropertyRef Name="userID" />
