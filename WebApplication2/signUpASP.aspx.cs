@@ -129,7 +129,7 @@ namespace WebApplication2
                     
                     e.Cancel = true;
                     CreateUserWizard1.FinishDestinationPageUrl = String.Empty;
-                    throw new Exception();
+                   // throw new Exception();
                 }
             }
 

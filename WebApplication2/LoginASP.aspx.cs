@@ -18,10 +18,11 @@ namespace WebApplication2
 
         protected void Login1_Authenticate(object sender, AuthenticateEventArgs e)
         {
-            if (System.Web.Security.Membership.ValidateUser(Login1.UserName, Login1.Password))
+            Login mylogin= (Login)LoginView1.FindControl("Login1");
+            if (System.Web.Security.Membership.ValidateUser(mylogin.UserName, mylogin.Password))
             {
                 // Log the user into the site
-                FormsAuthentication.RedirectFromLoginPage(Login1.UserName, Login1.RememberMeSet);
+                FormsAuthentication.RedirectFromLoginPage(mylogin.UserName, mylogin.RememberMeSet);
             }
             //there was an error. You are NOT logged in!
         }

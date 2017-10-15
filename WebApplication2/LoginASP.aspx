@@ -4,6 +4,10 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     
     <asp:LoginView ID="LoginView1" runat="server">
+        <LoggedInTemplate>
+            you are logged in already<br />
+            <asp:HyperLink ID="HyperLink1" runat="server">logout</asp:HyperLink>
+        </LoggedInTemplate>
         <RoleGroups>
             <asp:RoleGroup Roles="admin">
             </asp:RoleGroup>
