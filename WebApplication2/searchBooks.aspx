@@ -6,7 +6,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <asp:TextBox ID="searchBox" runat="server" ></asp:TextBox>
     <asp:ImageButton ID="ImageButton1" runat="server" Height="23px" ImageUrl="~/images/tblogo.PNG" OnClick="ImageButton1_Click" Width="31px" />
-    <asp:ListView ID="ListView2" runat="server" DataKeyNames="bookID" GroupItemCount="3">
+    <asp:ListView ID="ListView2" runat="server" DataKeyNames="bookID" GroupItemCount="3" OnPreRender="Prerender">
 
            <ItemTemplate>
             <td runat="server" style="background-color: #FFFBD6;color: #333333;">ISBN:
@@ -69,7 +69,7 @@
 
 
     <asp:ListView ID="ListView1" runat="server" DataKeyNames="bookID" 
-        GroupItemCount="3" OnSelectedIndexChanged="ListView1_SelectedIndexChanged1" >
+        GroupItemCount="3" OnSelectedIndexChanged="ListView1_SelectedIndexChanged1" DataSourceID="" >
         <AlternatingItemTemplate>
             <td runat="server" style="background-color: #FAFAD2;color: #284775;">ISBN:
                 <asp:Label ID="ISBNLabel" runat="server" Text='<%# Eval("ISBN") %>' />

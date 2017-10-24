@@ -11,13 +11,17 @@ namespace WebApplication2
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+           
+        }
+
+        protected void Prerender(object sender, EventArgs e)
+        {
             using (var db = new textbookbasicEntitiesContext())
             {
                 ListView2.DataSource = db.books.ToList();
                 ListView2.DataBind();
             }
         }
-
 
         protected void ListView1_SelectedIndexChanged(Object sender, EventArgs e)
         {
