@@ -59,8 +59,11 @@
         
         <li class = "navli"><a href="about.aspx">About</a></li>
         <li class = "navli"><a href="contact.aspx">Contact</a></li>
-
-    <li class = "navli"><a href="SignIn.aspx">Sign in</a></li>
+          <% if (HttpContext.Current.User.Identity.IsAuthenticated ) { %>
+    <li class = "navli"><a href="signoutConfirm.aspx">Sign Out</a></li>
+          <% } else { %>
+           <li class = "navli"><a href="LoginASP.aspx">Sign in</a></li>
+          <% } %>
         
          <li class = "navli"><a href="addBook.aspx">Add Book</a></li>
           <asp:LoginName ID="LoginName1" runat="server" />
@@ -73,6 +76,11 @@
         <div>
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>
+        </div>
+     <div class="footer">
+            <p><br /><br /><br /></p>
+         <asp:SiteMapPath ID="SiteMapPath1" runat="server" ></asp:SiteMapPath>
+          <p>TouroTextbookGemach©Rivka&amp;Rachel2017<br /><br /></p>
         </div>
     </form>
 

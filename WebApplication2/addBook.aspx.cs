@@ -87,9 +87,16 @@ namespace WebApplication2
                 );
 
 
+              //  try
+              //  {
 
-            
-                db.SaveChanges();
+                    db.SaveChanges();
+                Response.Redirect("searchBooks.aspx");
+              //  }
+              //  catch(Exception o)
+              //  {
+
+              //  }
             }
 
 

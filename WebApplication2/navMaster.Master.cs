@@ -11,7 +11,10 @@ namespace WebApplication2
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+           // if(userisloggedin){
+           //     then show sign out 
+          //  }
+          //  show sign in 
         }
     }
 }

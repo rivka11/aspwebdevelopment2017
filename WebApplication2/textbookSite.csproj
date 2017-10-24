@@ -112,6 +112,7 @@
     <Content Include="packages.config" />
     <Content Include="searchBooks.aspx" />
     <Content Include="SignIn.aspx" />
+    <Content Include="signoutConfirm.aspx" />
     <Content Include="signUp.aspx" />
     <Content Include="signUpASP.aspx" />
     <Content Include="Site1.Master" />
@@ -255,6 +256,13 @@
     </Compile>
     <Compile Include="SignIn.aspx.designer.cs">
       <DependentUpon>SignIn.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="signoutConfirm.aspx.cs">
+      <DependentUpon>signoutConfirm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="signoutConfirm.aspx.designer.cs">
+      <DependentUpon>signoutConfirm.aspx</DependentUpon>
     </Compile>
     <Compile Include="signUp.aspx.cs">
       <DependentUpon>signUp.aspx</DependentUpon>

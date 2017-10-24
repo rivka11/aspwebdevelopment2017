@@ -12,8 +12,12 @@ namespace WebApplication2
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!this.Page.User.Identity.IsAuthenticated)
+            {
+                FormsAuthentication.SignOut();
+            }
             //should I sign out a user if one is signed in?
-               // FormsAuthentication.SignOut();
+            // FormsAuthentication.SignOut();
         }
 
         protected void Login1_Authenticate(object sender, AuthenticateEventArgs e)

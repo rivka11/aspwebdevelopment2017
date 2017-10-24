@@ -11,6 +11,10 @@ namespace WebApplication2
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Request.Cookies["name"] != null)
+            {
+                Label1.Text = $"Thank you {Request.Cookies["name"].Value}! Your email has been sent.";
+            }
 
         }
     }

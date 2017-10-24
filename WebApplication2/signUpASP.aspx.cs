@@ -19,7 +19,7 @@ namespace WebApplication2
         {
             var myuserID = System.Web.Security.Membership.GetUser(CreateUserWizard1.UserName).ProviderUserKey;
             //make sure there is no user with that email address
-            using (var db = new textbookbasicEntitiesContext())
+            using (var db = new textbookbasicEntitiesContext()) //includes try/catch
             {
                 var email = (TextBox)(CreateUserWizard1.CreateUserStep.ContentTemplateContainer.FindControl("Email"));
                 string emailadd = email.Text;
@@ -174,6 +174,11 @@ namespace WebApplication2
 
             }
 
+        }
+
+        protected void ContinueButton_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("default.aspx");
         }
     }
 }
