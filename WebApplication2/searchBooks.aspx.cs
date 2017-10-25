@@ -18,7 +18,17 @@ namespace WebApplication2
         {
             using (var db = new textbookbasicEntitiesContext())
             {
-                ListView2.DataSource = db.books.ToList();
+
+                if (searchBox.Text != "")
+                {
+                    ListView2.DataSource = db.books.Where(v => v.ISBN.Contains(searchBox.Text) || v.Title.Contains(searchBox.Text)).ToList();
+                   
+                }
+                else
+                {
+                    ListView2.DataSource = db.books.ToList();
+                    
+                }
                 ListView2.DataBind();
             }
         }
@@ -30,17 +40,7 @@ namespace WebApplication2
 
         protected void ImageButton1_Click(object sender, ImageClickEventArgs e)
         {
-            if (searchBox.Text != "")
-            {
-
-                using (var db = new textbookbasicEntitiesContext())
-                {
-                    ListView2.DataSource = db.books.Where(v=> v.ISBN.Contains(searchBox.Text) || v.Title.Contains(searchBox.Text)).ToList();
-                    ListView2.DataBind();
-                }
-
-
-            }
+            Prerender(sender, e);
 
         }
 

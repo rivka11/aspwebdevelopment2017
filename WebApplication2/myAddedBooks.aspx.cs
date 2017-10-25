@@ -18,7 +18,7 @@ namespace WebApplication2
             }
 
             currUser = (Guid)(System.Web.Security.Membership.GetUser().ProviderUserKey);
-            SqlDataSource1.SelectParameters["sellerID"].DefaultValue = currUser.ToString();
+            SqlDataSource1.SelectParameters.Add("sellerID", currUser.ToString());
         }
     }
 }

@@ -13,7 +13,7 @@
     </asp:GridView>
     <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT [ISBN], [Title], [Author], [Edition] FROM [book] WHERE ([sellerID] = @sellerID)">
         <SelectParameters>
-            <asp:Parameter Name="sellerID" Type="Object" />
+           
             
         </SelectParameters>
     </asp:SqlDataSource>
